@@ -1,0 +1,71 @@
+/* 
+create a class Student having data members int rollNo, int age, char sex, name(char*),map<string, int>containing marks of subjectsEnglish, Maths, Science, History, Geography.
+create 10 students and add it to a vector.
+sort the vector according to name.
+*/
+
+#include <iostream>
+#include <cstring>
+#include <vector>
+#include <algorithm>
+#include <iomanip>
+using namespace std;
+
+class Student {
+private:
+    int rollNo;
+    int age;
+    char sex;
+    const char* name;
+
+public:
+    // Constructor
+    Student(int roll, int studentAge, char studentSex, const char* studentName) : 
+    rollNo(roll), age(studentAge), sex(studentSex), name(studentName) {}
+
+    // Function to compare students based on their names
+    static bool compareNames(const Student& s1, const Student& s2) {
+        return strcmp(s1.name, s2.name) < 0;
+    }
+
+    // Public member function to display student details in tabular format
+    void display() const {
+        cout << left << setw(10) << rollNo;
+        cout << left << setw(20) << name;
+        cout << left << setw(5) << sex;
+        cout << left << setw(10) << age << endl;
+    }
+};
+
+int main() {
+    // Example usage
+    vector<Student> students;
+    students.push_back(Student(1, 21, 'M', "Gibran Syed"));
+    students.push_back(Student(2, 22, 'M', "Suraj Kanwale"));
+    students.push_back(Student(3, 23, 'M', "Gajanan Kamble"));
+    students.push_back(Student(4, 24, 'M', "Onkar Jakate"));
+    students.push_back(Student(5, 25, 'F', "Kiran shrimanwar"));
+    students.push_back(Student(6, 26, 'F', "Shraddha Somani"));
+    students.push_back(Student(7, 27, 'M', "Shubham kamble"));
+    students.push_back(Student(8, 28, 'M', "Siddique Shaikh"));
+    students.push_back(Student(9, 29, 'F', "Soumya Gugolot"));
+    students.push_back(Student(10, 30, 'M', "Arvind Kumar"));
+    
+    // Sorting students by name
+    sort(students.begin(), students.end(), Student::compareNames);
+
+    // Display header
+    cout << left << setw(10) << "Roll No";
+    cout << left << setw(20) << "Name";
+    cout << left << setw(5) << "Sex";
+    cout << left << setw(10) << "Age" << endl;
+    cout << "----------------------------------------------" << endl;
+
+    // Display sorted student details
+    for (const auto& student : students) {
+        student.display();
+    }
+
+    return 0;
+}
+
