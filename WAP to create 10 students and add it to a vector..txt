@@ -1,0 +1,96 @@
+/* 
+create a class Student having data members int rollNo, int age, char sex, name(char*),map<string, int>containing marks of subjectsEnglish, Maths, Science, History, Geography.
+create 10 students and add it to a vector.
+sort the vector according to name.
+*/
+
+#include <iostream>
+#include <cstring>
+#include <vector>
+#include <algorithm>
+#include <iomanip>
+#include <map>
+using namespace std;
+
+class Student {
+private:
+    int rollNo;
+    int age;
+    char sex;
+    const char* name;
+    map<string, int> marks; // Map to store marks of subjects
+
+public:
+    // Constructor
+    Student(int roll, int studentAge, char studentSex, const char* studentName, const map<string, int>& studentMarks) : 
+    rollNo(roll), age(studentAge), sex(studentSex), name(studentName), marks(studentMarks) {}
+
+    // Function to compare students based on their names
+    static bool compareNames(const Student& s1, const Student& s2) {
+        return strcmp(s1.name, s2.name) < 0;
+    }
+
+    // Public member function to display student details in tabular format
+    void display() const {
+        cout << left << setw(10) << rollNo;
+        cout << left << setw(20) << name;
+        cout << left << setw(5) << sex;
+        cout << left << setw(10) << age;
+        // Display marks of subjects
+        for (const auto& subject : marks) {
+            cout << left << setw(10) << subject.second;
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    // Example usage
+    vector<Student> students;
+    // Example marks for subjects
+    map<string, int> student1_marks = {{"English", 80}, {"Maths", 51}, {"Science", 61}, {"History", 81}, {"Geography", 77}};
+    map<string, int> student2_marks = {{"English", 79}, {"Maths", 52}, {"Science", 62}, {"History", 82}, {"Geography", 87}};
+    map<string, int> student3_marks = {{"English", 78}, {"Maths", 53}, {"Science", 63}, {"History", 83}, {"Geography", 97}};
+    map<string, int> student4_marks = {{"English", 77}, {"Maths", 54}, {"Science", 64}, {"History", 84}, {"Geography", 57}};
+    map<string, int> student5_marks = {{"English", 76}, {"Maths", 55}, {"Science", 65}, {"History", 85}, {"Geography", 67}};
+    map<string, int> student6_marks = {{"English", 75}, {"Maths", 56}, {"Science", 66}, {"History", 86}, {"Geography", 77}};
+    map<string, int> student7_marks = {{"English", 74}, {"Maths", 57}, {"Science", 67}, {"History", 87}, {"Geography", 87}};
+    map<string, int> student8_marks = {{"English", 73}, {"Maths", 58}, {"Science", 68}, {"History", 88}, {"Geography", 97}};
+    map<string, int> student9_marks = {{"English", 72}, {"Maths", 59}, {"Science", 69}, {"History", 89}, {"Geography", 87}};
+    map<string, int> student10_marks = {{"English", 71}, {"Maths", 60}, {"Science", 70}, {"History", 90}, {"Geography", 77}};
+    // Add students to the vector
+    students.push_back(Student(1, 21, 'M', "Gibran Syed", student1_marks));
+    students.push_back(Student(2, 22, 'M', "Suraj Kanwale", student2_marks));
+    students.push_back(Student(3, 23, 'M', "Gajanan Kamble", student3_marks));
+    students.push_back(Student(4, 24, 'M', "Onkar Jakate", student4_marks));
+    students.push_back(Student(5, 25, 'F', "Kiran shrimanwar", student5_marks));
+    students.push_back(Student(6, 26, 'F', "Shraddha Somani", student6_marks));
+    students.push_back(Student(7, 27, 'M', "Shubham kamble", student7_marks));
+    students.push_back(Student(8, 28, 'M', "Siddique Shaikh", student8_marks));
+    students.push_back(Student(9, 29, 'F', "Soumya Gugolot", student9_marks));
+    students.push_back(Student(10, 30, 'M', "Arvind Kumar", student10_marks));
+
+
+    // Sorting students by name
+    sort(students.begin(), students.end(), Student::compareNames);
+
+    // Display header
+    cout << left << setw(10) << "Roll_No";
+    cout << left << setw(20) << "Name";
+    cout << left << setw(5) << "Sex";
+    cout << left << setw(10) << "Age";
+    cout << left << setw(10) << "English";
+    cout << left << setw(10) << "Maths";
+    cout << left << setw(10) << "Science";
+    cout << left << setw(10) << "History";
+    cout << left << setw(10) << "Geography" << endl;
+    cout << "-------------------------------------------------------------------------------------------------" << endl;
+
+    // Display sorted student details
+    for (const auto& student : students) {
+        student.display();
+    }
+
+    return 0;
+}
+
