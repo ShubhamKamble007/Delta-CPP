@@ -36,7 +36,8 @@ public:
         cout << left << setw(20) << name;
         cout << left << setw(5) << sex;
         cout << left << setw(10) << age;
-        // Display marks of subjects
+       
+    // Display marks of subjects
         for (const auto& subject : marks) {
             cout << left << setw(10) << subject.second;
         }
@@ -45,9 +46,7 @@ public:
 };
 
 int main() {
-    // Example usage
     vector<Student> students;
-    // Example marks for subjects
     map<string, int> student1_marks = {{"English", 80}, {"Maths", 51}, {"Science", 61}, {"History", 81}, {"Geography", 77}};
     map<string, int> student2_marks = {{"English", 79}, {"Maths", 52}, {"Science", 62}, {"History", 82}, {"Geography", 87}};
     map<string, int> student3_marks = {{"English", 78}, {"Maths", 53}, {"Science", 63}, {"History", 83}, {"Geography", 97}};
